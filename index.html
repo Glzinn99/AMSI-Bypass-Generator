@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMSI.bypass</title>
+    <link rel="icon" type="image/x-icon" href="img/icons/PS1.ico"> <!-- Icono de la pestaña -->
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script> <!-- Cargar Script funcional de la pagina -->
+    <script src="js/codeScript.js"></script> <!-- Cargar script PowerShell Aleatorio MASI -->
+</head>
+
+<body>
+
+    <!-- Header de la pagina -->
+    <header class="header">
+        <!-- Botón de hamburguesa -->
+        <div class="burger" id="burger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        
+        <!-- Imagen de la pagina -->
+        <img src="img/logoAMSIBypass2-sinFondo.png" alt="Logo AMSI Bypass" class="logo-page">
+
+        <div class="logo-container">
+            <span class="logo-text">AMSI.bypass</span>
+        </div>
+
+        <!-- Overlay para cerrar aside al hacer clic fuera -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Aside para la navegación -->
+        <aside id="sidebar">
+            <button id="closeBtn">&times;</button> <!-- Botón de cierre (X) -->
+            <br><br><br><br><br>
+            <div class="logo"><p class="logo-text-burguer">AMSI.bypass<p></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="amsiinfomodule.html">Info AMSI Module</a></li>
+                <li><a href="#">GitBook</a></li> <!-- Mi GitBook donde explico este modulo y como explotarlo -->
+                <!--<li><a href="https://github.com/Flangvik/AMSI.fail">GitHub</a></li>-->
+            </ul>
+        </aside>
+    </header>   
+    <!-- br's para separar la terminal con el header --> 
+    <br><br><br><br><br>
+
+    <main>
+        <br>
+        <!-- Diseño de prompt kali terminal titulo -->
+        <div class="terminal-container-page">
+            <div class="terminal-page-title">
+                <span class="line1">┌──(<span class="user">root</span>💀<span class="host">amsi.bypass</span>)-[~]</span>
+                <span class="line2">└─# <span class="command-page">CODIGO GENERADO</span></span>
+            </div>
+        </div> 
+        <hr class="styled-divider">
+        <p class="description-page margin-page-desc">Genera fragmentos de PowerShell ofuscados que interrumpen o deshabilitan AMSI para el proceso actual. Los fragmentos se seleccionan al azar de un pequeño conjunto de técnicas/variaciones antes de ofuscarse. Cada fragmento se ofusca en tiempo de ejecución/solicitud para que ningún resultado generado comparta las mismas firmas.</p>
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <div class="buttons">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </div>
+                <span class="title">
+                    <span>PowerShell</span>
+                </span>
+                <img src="img/copy.png" id="copyBtnTerminal" alt="Copy">
+                <span id="copiedText" style="visibility: hidden; opacity: 0; transition: opacity 0.5s;">Copied!</span>
+            </div>
+            <div class="terminal-container">
+                <div class="terminal-body">
+                    <!-- Textarea oculto para copiar el payload sin formato -->
+                    <!--<textarea id="PowerShellOutRaw" cols="50" rows="10" style="display:none;"></textarea>-->
+                    <!--<textarea id="PowerShellOutRaw" cols="50" rows="10"></textarea>-->
+                    <!-- Salida formateada con colores -->
+                    <div id="PowerShellOut" class="output"></div>
+                    <div class="copy-container">
+                        <div class="button-container">
+                            <img src="img/generatePlay.png" class="icon-generate color-play icon-position-generate">
+                            <button class="generate-btn size-button-generate" onclick="GeneratePS(); showTerminalEffect(this)"><b>Generate</b></button>
+                            <span class="terminal-overlay"></span> <!-- Span para este botón -->
+                        </div>
+                        <div class="button-container">
+                            <img src="img/codifgicar.png" class="icon-generate icon-position-generateCoded">
+                            <button class="generate-btn size-button-generateCoded" onclick="GenerateEncPS(); showTerminalEffect(this, true)"><b>Generate Encoded</b></button>
+                            <span class="terminal-overlay"></span> <!-- Span para este otro botón -->
+                        </div>
+                    </div>
+                    <div class="slider-container">
+                        <!--<label for="animation-toggle">Animación:</label>-->
+                        <input type="checkbox" id="animation-toggle" checked> <!-- Agregar checked aquí -->
+                        <span id="animation-status">Animación Activada</span>
+                    </div>                                                                                                                                   
+                    <!--<button onclick="GeneratePS()">Generate</button>-->
+                    <!--<button onclick="GenerateEncPS()">Generate Encoded</button>-->
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Diseño de prompt kali terminal titulo -->
+        <div class="terminal-container-page">
+            <div class="terminal-page-title">
+                <span class="line1">┌──(<span class="user">root</span>💀<span class="host">amsi.bypass</span>)-[~]</span>
+                <span class="line2">└─# <span class="command-page">CODIGO SIN FORMATO</span></span>
+            </div>
+        </div> 
+        <!--      
+        <div class="terminal-container-page">
+            <div class="terminal-page-title">
+                <span class="prompt-page">$</span> CODIGO SIN FORMATO
+            </div>
+        </div>-->
+        <hr class="styled-divider">
+        <div class="terminal-container">
+            <p class="des-nullformat">Este codigo de aquí esta sin formato de color, por si el anterior codigo diera algun error de formato en el PowerShell</p>
+            <div class="terminal-body">
+                <textarea id="PowerShellOutRaw" cols="50" rows="10"></textarea> <!-- Area donde esta el codigo sin formato de color por si el otro da error -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer de la pagina -->
+    <br><br><br><br>
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="footer-text">© 2025 BYPASS AMSI | AMSI.bypass</span>
+        </div>
+    </footer>    
+</body>
+
+</html>

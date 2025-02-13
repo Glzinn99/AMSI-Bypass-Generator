@@ -1,0 +1,1177 @@
+body {
+    background-color: #0a0f14;
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+/* Menú hamburguesa dentro del header */
+.burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px; /* Tamaño reducido para que sea más proporcional */
+    height: 25px; /* Altura reducida */
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    position: absolute; /* Posiciona el menú en la esquina izquierda */
+    left: 10px; /* Ajusta el espacio desde el borde izquierdo */
+}
+
+.burger div {
+    background-color: #c9d1d9;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Animación del menú */
+.burger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.burger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* Aside (menú lateral) */
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alineación superior */
+    align-items: center;
+    width: 250px;
+    background-color: rgba(26, 31, 41/*, 0.85*/); /* Gris oscuro con algo de transparencia */
+    height: 100vh;
+    position: fixed;
+    left: -250px;
+    top: 0;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 30px; /* Espaciado superior más amplio */
+    text-align: center;
+}
+
+/* Activación del aside */
+aside.active {
+    left: 0;
+}
+
+/* Estilo para el logo dentro del aside */
+aside .logo {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+/* Overlay para cerrar aside */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Estilo de enlaces en el aside */
+.nav-links li {
+    list-style: none;
+    margin: 12px 0;
+    margin-right: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    display: block;
+    padding: 12px 20px; /* Espaciado ajustado */
+    border-radius: 6px;
+    background: linear-gradient(45deg, #58a6ff, #1f6feb);
+    box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #58a6ff;
+    box-shadow: 0 0 15px #58a6ff, 0 0 30px #1f6feb;
+    transform: translateX(8px);
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    aside {
+        width: 200px;
+        left: -200px;
+    }
+
+    .nav-links a {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .burger {
+        width: 25px;
+        height: 20px;
+    }
+
+    aside {
+        width: 180px;
+        left: -180px;
+    }
+
+    .nav-links a {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+}
+
+/* Botón de cierre en el aside */
+#closeBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ff5f56;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1100;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    font-size: 1.5em; /* Ajustado para ser proporcional */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px; /* Hacemos el botón circular */
+}
+
+#closeBtn:hover {
+    background-color: #e03e2f;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+}
+
+/* Terminal */
+.terminal-container {
+    width: 95%;
+    max-width: 900px;
+    background-color: #161b22;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 40px auto;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+}
+
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0d1117;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+.buttons span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.terminal-body {
+    padding: 15px;
+    background-color: #0d1117;
+    border-radius: 0 0 8px 8px;
+}
+
+textarea {
+    width: 98%;
+    height: 180px;
+    background-color: #0d1117;
+    border: 1px solid #c9d1d9;
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    resize: none;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/*button {
+    background-color: #58a6ff;
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #1f6feb;
+}*/
+
+#copyBtn {
+    position: absolute; /* Permite mover la imagen dentro de .terminal-header */
+    top: -75%;
+    right: -50px; /* Mueve el botón a la derecha con un pequeño espacio de 10px */
+    transform: translateY(-50%); /* Centra verticalmente la imagen */
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+#copyBtnTerminal {
+    position: absolute; /* Permite mover la imagen dentro de .terminal-header */
+    top: 50%;
+    right: 10px; /* Mueve el botón a la derecha con un pequeño espacio de 10px */
+    transform: translateY(-50%); /* Centra verticalmente la imagen */
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+#copyBtn {
+    filter: brightness(0) invert(1); /* Esto hará que la imagen se vuelva blanca */
+}
+
+#copyBtnTerminal {
+    filter: brightness(0) invert(1); /* Esto hará que la imagen se vuelva blanca */
+}
+
+
+/* Aseguramos que el texto "PowerShell" esté centrado y no se mueva */
+.title {
+    flex: 1; /* Esto hace que el título ocupe todo el espacio disponible */
+    text-align: center; /* Centra el texto */
+}
+
+#copiedTextTerminal {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-size: 14px;
+    color: #58a6ff;
+    margin-left: 10px;
+}
+
+#copiedText {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-size: 14px;
+    color: #58a6ff;
+    margin-left: 10px;
+}
+
+.main-container-mini-terminal {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #0a0f14;
+    color: #c9d1d9;
+    display: flex;
+    /*justify-content: center;*/
+    padding-left: 50px;
+    align-items: center;
+    margin: auto;
+}
+
+.mini-terminal {
+    background-color: #2d2d3d;
+    border-radius: 8px;
+    padding: 15px;
+    width: fit-content;
+    max-width: 80%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.terminal-header {
+    display: flex;
+    justify-content: space-between; /* Esto distribuye el espacio entre los elementos */
+    align-items: center;
+    position: relative; /* Necesario para posicionar el botón respecto a este div */
+    padding: 10px;
+    background-color: #0d1117;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    #closeBtn {
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        font-size: 1.2em;
+    }
+
+    .terminal-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    textarea {
+        height: 150px;
+        width: 94.5%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #closeBtn {
+        width: 20px;
+        height: 20px;
+        font-size: 1em;
+    }
+
+    .terminal-container {
+        width: 100%;
+        padding: 8px;
+    }
+
+    textarea {
+        height: 120px;
+        font-size: 0.9em;
+    }
+
+    .mini-terminal {
+        max-width: 90%;
+        padding: 8px;
+    }
+
+    #copyBtnTerminal,
+    #copyBtn {
+        width: 15px;
+        height: 15px;
+        right: 5px;
+    }
+
+    .title {
+        font-size: 0.9em;
+    }
+}
+
+.buttons span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+.terminal-body {
+    background-color: #1e1e2e;
+    color: #c9d1d9;
+    padding: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-radius: 0 0 8px 8px;
+    font-size: 14px;
+}
+.copy-container {
+    display: flex;
+    align-items: center;
+}
+.copy-btn {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.copied-text {
+    color: #58a6ff;
+    margin-right: -50px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    visibility: hidden;
+}
+
+.copied-text-terminal {
+    color: #58a6ff;
+    margin-right: 5px;
+    visibility: hidden;
+}
+
+/* Estilos para cambiar el color de la terminal según el comando */
+.mini-terminal.success .command-output {
+    background-color: #27c93f; /* Verde */
+}
+
+.mini-terminal.error .command-output {
+    background-color: #ff5f56; /* Rojo */
+}
+
+.mini-terminal.warning .command-output {
+    background-color: #ffbd2e; /* Amarillo */
+}
+
+/* Estilo del Header de la pagina */
+/* ===== HEADER HACKING TERMINAL ===== */
+.header {
+    display: flex;
+    justify-content: right; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    background: linear-gradient(90deg, #0a0f14, #1a1f29);
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+}
+
+/* Logo con efecto neón */
+.logo-container {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #58a6ff;
+    text-shadow: 0 0 10px #58a6ff, 0 0 20px #1f6feb;
+    animation: flicker 1.5s infinite alternate;
+}
+
+/* Efecto de parpadeo en el logo */
+@keyframes flicker {
+    0% { opacity: 1; text-shadow: 0 0 10px #58a6ff, 0 0 20px #1f6feb; }
+    50% { opacity: 0.8; text-shadow: 0 0 5px #58a6ff, 0 0 10px #1f6feb; }
+    100% { opacity: 1; text-shadow: 0 0 15px #58a6ff, 0 0 30px #1f6feb; }
+}
+
+/* Estilos de la barra de navegación */
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #c9d1d9;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(45deg, #58a6ff, #1f6feb);
+    box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+}
+
+.nav-bar a:hover {
+    background-color: transparent;
+    color: #fff;
+    border-color: #58a6ff;
+    box-shadow: 0 0 15px #58a6ff, 0 0 30px #1f6feb;
+    transform: translateY(-3px);
+}
+
+/* Hacer el header responsive */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-bar ul {
+        flex-direction: column;
+        padding-top: 10px;
+    }
+
+    .nav-bar a {
+        display: block;
+        padding: 10px;
+    }
+}
+
+/* ===== FOOTER HACKING TERMINAL ===== */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, #1a1f29, #0a0f14);
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Texto con efecto neón */
+.footer-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #58a6ff;
+    text-shadow: 0 0 10px #58a6ff, 0 0 20px #1f6feb;
+    animation: flicker 1.5s infinite alternate;
+}
+
+/* Animación de parpadeo */
+@keyframes flicker {
+    0% { opacity: 1; text-shadow: 0 0 10px #58a6ff, 0 0 20px #1f6feb; }
+    50% { opacity: 0.8; text-shadow: 0 0 5px #58a6ff, 0 0 10px #1f6feb; }
+    100% { opacity: 1; text-shadow: 0 0 15px #58a6ff, 0 0 30px #1f6feb; }
+}
+
+/* Hacer el footer responsive */
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 15px;
+    }
+
+    .footer-text {
+        font-size: 1rem;
+    }
+}
+
+.output {
+    width: 94.5%;
+    height: 180px;
+    background-color: #0d1117;
+    border: 1px solid #c9d1d9;
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-top: -70px;
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    .buttons span {
+        width: 10px;
+        height: 10px;
+        margin-right: 3px;
+    }
+
+    .terminal-body {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .copied-text,
+    .copied-text-terminal {
+        font-size: 12px;
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .mini-terminal.success .command-output,
+    .mini-terminal.error .command-output,
+    .mini-terminal.warning .command-output {
+        font-size: 12px;
+    }
+
+    .logo-container {
+        font-size: 1.5rem;
+    }
+
+    .logo-text-burguer {
+        font-size: 1.5rem;
+        margin-bottom: -40px;
+    }
+
+    .nav-bar ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .nav-bar a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .footer-text {
+        font-size: 1rem;
+    }
+
+    .output {
+        height: 150px;
+        font-size: 12px;
+        margin-top: -50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .buttons span {
+        width: 8px;
+        height: 8px;
+    }
+
+    .terminal-body {
+        font-size: 11px;
+        padding: 6px;
+    }
+
+    .copy-btn {
+        margin-top: 25px;
+        margin-right: -15px;
+    }
+
+    .copied-text {
+        font-size: 10px;
+        margin-top: -8px;
+        margin-bottom: 28px;
+    }
+
+    .copied-text-terminal {
+        font-size: 10px;
+    }
+
+    .logo-container {
+        font-size: 1.2rem;
+    }
+
+    .nav-bar ul {
+        gap: 5px;
+    }
+
+    .nav-bar a {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
+    .footer-text {
+        font-size: 0.9rem;
+    }
+
+    .output {
+        height: 120px;
+        font-size: 11px;
+        margin-top: -40px;
+    }
+}
+
+
+/* COLORES */
+
+.comment { color: #569CD6; font-style: italic; }  /* 🟣 Comentarios en azul-morado */
+.command { color: #FFD700; font-weight: bold; }  /* 🟡 Cmdlets en amarillo */
+.parameter { color: #888888; font-weight: bold; }  /* ⚪ Parámetros en gris */
+.value { color: #FF5555; }  /* 🔴 True, False y números en rojo */
+.operator { color: #C586C0; }  /* 🟣 Operadores en morado */
+.variable { color: #FFA500; font-weight: bold; }  /* 🟠 Variables en naranja */
+.datatype { color: #4EC9B0; }  /* 🔵 Tipos de datos en azul */
+.string { color: green; }
+
+.title-nullformat {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00eaff;  /* Azul Neón */
+    background: linear-gradient(to right, #051937, #00214d); /* Degradado Azul Oscuro */
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-align: center;
+    display: block;
+    width: fit-content;
+    margin: 20px auto; /* Centrado horizontal */
+    box-shadow: 0px 0px 15px rgba(0, 234, 255, 0.6); /* Brillo Neón Azul */
+    border: 2px solid rgba(0, 234, 255, 0.8); /* Borde Neón */
+    text-shadow: 0px 0px 8px rgba(0, 234, 255, 0.9); /* Brillo en el texto */
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, #00eaff, #004080); /* Azul Neón a Azul Oscuro */
+    margin: 12px 0;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(0, 234, 255, 0.5); /* Efecto Glow */
+}
+
+.description-page {
+    text-align: center;
+}
+
+.margin-page {
+    margin-left: 50px;
+}
+
+.margin-page-title {
+    margin-left: 10%;
+}
+
+/* Estilo de la linea separatoria de la segunda pagina */
+
+.styled-divider {
+    width: 0%;
+    height: 2px;
+    background: #58a6ff;
+    margin: 30px auto;
+    border-radius: 5px;
+    animation: expand 1s ease-in-out forwards;
+}
+
+@keyframes expand {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 80%;
+    }
+}
+
+/* Estilo de los links de la pagina */
+
+.link-page {
+    text-decoration: none;
+    color: #00eaff;
+}
+
+/* Estilo del logo de la pagina */
+
+.logo-page {
+    width: 170px;
+    position: absolute;
+    left: 48.5%;
+    transform: translateX(-50%); /* Esto la centra exactamente */
+}
+
+
+/* Estilo del titulo "Sin formato" rollo terminal (kali) */
+
+/*
+.terminal-page-title {
+    background-color: #000;
+    color: #33FF33;
+    font-family: "Courier New", monospace;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 20px;
+    text-shadow: 0 0 5px #33FF33;
+    border: 2px solid #33FF33;
+}*/
+
+/*
+.prompt-page {
+    color: #ffcc00;
+    font-weight: bold;
+}*/
+
+/* Contenedor para centrar */
+.terminal-container-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.terminal-container-page2 {
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    margin-left: 190px;
+}
+
+/* Estilo del usuario y host */
+.user {
+    color: #ff5555; /* Rojo para el usuario root */
+    font-weight: bold;
+}
+
+.host {
+    color: #87CEEB; /* Azul claro para el hostname */
+    font-weight: bold;
+}
+
+/* Línea de comando */
+.line1, .line2 {
+    display: block;
+}
+
+.command-page {
+    color: #fff; /* Blanco para el texto ingresado */
+    font-weight: bold;
+}
+
+/* Margen de las descripciones de la pagina */
+
+.margin-page-desc {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.margin-page-desc-term {
+    margin-left: 50px;
+}
+
+/* estilo de escritura tipo terminal y de los botones */
+
+.copy-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Apilar los botones verticalmente */
+    gap: 8px; /* Espacio entre los botones */
+    justify-content: center;
+    align-items: center; /* Centrar los botones */
+    margin-right: 50px;
+    margin-bottom: -40px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center; /* Alinear la imagen y el botón en el centro */
+    gap: 8px; /* Espacio entre la imagen y el botón */
+}
+
+/*
+.generate-btn {
+    font-size: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+    font-family: monospace;
+}*/
+
+.generate-btn {
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid #2196F3; /* Borde azul */
+    background-color: transparent; /* Fondo transparente */
+    color: #2196F3; /* Color del texto azul */
+    border-radius: 8px; /* Bordes redondeados */
+    font-family: 'Courier New', monospace; /* Estilo tipo terminal */
+    font-weight: bold; /* Agrega negrita */
+    text-transform: uppercase; /* Transforma el texto a mayúsculas */
+    transition: all 0.3s ease-in-out; /* Transición suave */
+}
+
+.generate-btn:hover {
+    background-color: #2196F3; /* Fondo azul cuando se pasa el ratón */
+    color: white; /* Texto blanco cuando el fondo se vuelve azul */
+    border: 2px solid #1976D2; /* Borde azul más oscuro al pasar el ratón */
+}
+
+.generate-btn:active {
+    background-color: #1976D2; /* Fondo azul más oscuro cuando se hace clic */
+    border: 2px solid #1976D2; /* Borde más oscuro cuando se hace clic */
+    transform: scale(0.98); /* Efecto de pulsación */
+}
+
+.terminal-overlay {
+    display: none;
+    position: absolute;
+    left: 100%; /* Coloca el texto a la derecha del botón */
+    top: 0;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo para el texto */
+    color: white;
+    padding: 10px;
+    font-family: monospace;
+    left: 520px;
+    margin-top: 25px;
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    .title-nullformat {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+    hr {
+        height: 2px;
+    }
+
+    .margin-page {
+        margin-left: 20px;
+    }
+
+    .margin-page-title {
+        margin-left: 5%;
+    }
+
+    .styled-divider {
+        width: 70%;
+    }
+
+    .logo-page {
+        width: 100px;
+        position: absolute;
+        margin-left: 32%;
+        margin-top: -8%;
+    }
+
+    .terminal-container-page2 {
+        margin-left: 50px;
+    }
+
+    .margin-page-desc {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .margin-page-desc-term {
+        margin-left: 20px;
+    }
+
+    .copy-container {
+        margin-right: 20px;
+    }
+
+    .generate-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .terminal-overlay {
+        left: 73%;
+        font-size: 7px;
+        padding: 8px;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title-nullformat {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .margin-page {
+        margin-left: 10px;
+    }
+
+    .margin-page-title {
+        margin-left: 0;
+    }
+
+    .styled-divider {
+        width: 60%;
+    }
+
+    .terminal-container-page2 {
+        margin-left: 20px;
+    }
+
+    .margin-page-desc {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .margin-page-desc-term {
+        margin-left: 10px;
+    }
+
+    .copy-container {
+        margin-right: 10px;
+    }
+
+    .generate-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
+
+
+.icon-generate {
+    width: 24px; /* Ajusta el tamaño de la imagen */
+    height: 24px;
+    margin-top: 10px;
+}
+
+/* Cambio de color de la imagen a verde */
+
+.color-play {
+    filter: invert(35%) sepia(100%) saturate(1000%) hue-rotate(90deg);
+}
+
+/* Largo y ancho del boton "Generate" */
+
+.size-button-generate {
+    width: 100%;
+    padding: 8px 48px;
+}
+
+.icon-position-generate {
+    margin-top: 1px;
+}
+
+/* Largo y ancho del boton "GenerateCoded" y posicion de la imagen */
+
+.size-button-generateCoded {
+    width: 100%;
+    padding: 10px;
+}
+
+.icon-position-generateCoded {
+    margin-top: 3px;
+}
+
+/* Estilo del Slider */
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    justify-content: center;
+    margin-right: 50px;
+    margin-top: 40px;
+    margin-bottom: -50px;
+}
+
+#animation-toggle {
+    appearance: none;
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 50px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#animation-toggle:checked {
+    background-color: #4CAF50; /* Verde cuando está activado */
+}
+
+#animation-toggle:before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 50%;
+    transition: left 0.3s ease;
+}
+
+#animation-toggle:checked:before {
+    left: 27px; /* Mueve el círculo a la derecha cuando está activado */
+}
+
+#animation-status {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* Cambia el texto cuando está desactivado */
+#animation-toggle:checked + #animation-status {
+    color: #4CAF50; /* Verde cuando está activado */
+}
+
+/* Alinear el titulo de la pagina a la derecha */
+
+.logo-text {
+    margin-right: 50px;
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    .icon-generate {
+        width: 20px;
+        height: 20px;
+    }
+
+    .size-button-generate {
+        padding: 6px 37px;
+    }
+
+    .size-button-generateCoded {
+        padding: 8px;
+    }
+
+    .slider-container {
+        flex-direction: column;
+        gap: 5px;
+        margin-right: 20px;
+        margin-top: 20px;
+        margin-bottom: -30px;
+    }
+
+    #animation-toggle {
+        width: 40px;
+        height: 20px;
+    }
+
+    #animation-toggle:before {
+        width: 18px;
+        height: 18px;
+    }
+
+    #animation-toggle:checked:before {
+        left: 20px;
+    }
+
+    #animation-status {
+        font-size: 14px;
+    }
+
+    .logo-text {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .icon-generate {
+        width: 18px;
+        height: 18px;
+    }
+
+    .slider-container {
+        margin-right: 10px;
+        margin-top: 40px;
+        margin-bottom: -40px;
+    }
+
+    #animation-toggle {
+        width: 35px;
+        height: 18px;
+    }
+
+    #animation-toggle:before {
+        width: 15px;
+        height: 15px;
+    }
+
+    #animation-toggle:checked:before {
+        left: 18px;
+    }
+
+    #animation-status {
+        font-size: 12px;
+    }
+
+    .logo-text {
+        margin-right: 10px;
+    }
+}
