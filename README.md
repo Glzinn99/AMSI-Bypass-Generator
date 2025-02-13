@@ -52,9 +52,9 @@ Las contribuciones son bienvenidas. Para agregar nuevas técnicas de bypass o me
 1. Realiza un **fork** del repositorio.
 2. Crea una rama con la mejora:
     
-    ```bash
-    git checkout -b feature/nueva-mejora
-    ```
+```bash
+git checkout -b feature/nueva-mejora
+```
     
 3. Realiza los cambios y envía un pull request.
 
