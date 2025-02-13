@@ -1,4 +1,4 @@
-#AMSI Bypass Generator - GitHub Page
+# AMSI Bypass Generator - GitHub Page
 
 ## Project Description
 
@@ -62,7 +62,7 @@ git checkout -b feature/nueva-mejora
 
 If you have questions or suggestions, you can contact me through:
 
-- GitHub: [d1se0]([https://github.com/D1se0](https://github.com/D1se0))
+- GitHub: [d1se0](https://github.com/D1se0)
 - Gmail: [ciberseguridad12345@gmail.com](mailto:ciberseguridad12345@gmail.com)
 
 ---
